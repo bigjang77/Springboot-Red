@@ -19,7 +19,6 @@ create table users(
 CREATE SEQUENCE users_seq 
 INCREMENT BY 1 
 START WITH 1;
-```
 
 create table boards(
     id number primary key,
@@ -34,6 +33,9 @@ CREATE SEQUENCE boards_seq
 INCREMENT BY 1 
 START WITH 1;
 ```
+
+
+
 
 ### 더미데이터 추가
 ```sql
