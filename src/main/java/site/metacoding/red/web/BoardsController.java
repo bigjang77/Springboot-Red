@@ -21,6 +21,8 @@ public class BoardsController {
 	
 	private final BoardsDao boardsDao;//final을 적으면 무조건 초기화를해야한다
 	
+
+	
 	@PostMapping("/boards")
 	public RespDto<?>insert(WriteDto writeDto){
 		boardsDao.insert(writeDto);
@@ -34,7 +36,7 @@ public class BoardsController {
 	
 	@GetMapping("/boards/{id}")
 	public RespDto<?> getOne(@PathVariable Integer id){
-		return new RespDto<>(1,"글조회성공",boardsDao.findById(id));
+		return new RespDto<>(1,"글조회성공",boardsDao.findByIdtoDetail(id));
 	}
 	
 	@PutMapping("/boards/{id}")
@@ -46,6 +48,17 @@ public class BoardsController {
 		//update실행
 		boardsDao.update(boardsPS);
 		return new RespDto<>(1,"글수정성공",null);
+	}
+	
+	@PutMapping("/boards/{id}/title")
+	public RespDto<?>updateTitle(@PathVariable Integer id, String title){
+		//영속화
+		Boards boardsPS = boardsDao.findById(id);
+		//변경
+		boardsPS.글제목수정(title);
+		//update실행
+		boardsDao.update(boardsPS);
+		return new RespDto<>(1,"제목수정성공",null);
 	}
 	
 	@DeleteMapping("/boards/{id}")

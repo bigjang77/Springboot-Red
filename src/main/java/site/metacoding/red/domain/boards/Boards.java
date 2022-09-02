@@ -19,4 +19,7 @@ public class Boards {
 		this.title = updateDto.getTitle();
 		this.content = updateDto.getContent();
 	}
+	public void 글제목수정(String title) {
+		this.title = title;
+	}
 }
